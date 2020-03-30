@@ -1,6 +1,7 @@
 // Code your JavaScript / jQuery solution here
-function player(turn = 0) {
+var turn = 0;
 
+function player() {
   if (turn % 2 == 0) {
     return 'X';
   } else {
