@@ -1,4 +1,5 @@
-// Code your JavaScript / jQuery solution here
+// var square = '';
+// var squares = [];
 var turn = 0;
 
 function attachListeners() {
@@ -13,7 +14,7 @@ function doTurn() {
 
 }
 
-function player() {
+var player = () => {
   if (turn % 2 == 0) {
     return 'X';
   } else {
@@ -25,6 +26,7 @@ function setMessage() {
 
 }
 
-function updateState() {
-
+function updateState(square) {
+  var token = player();
+  square.innerText = token;
 }
