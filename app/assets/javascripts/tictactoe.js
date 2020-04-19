@@ -14,9 +14,10 @@ var  winCombinations = [
 
 function attachListeners() {
   squareTDs.forEach(e); {
+    console.log("attachListeners e", e);
     e.addEventListener('click', doTurn());
   }
-  this.saveButton = document.getElementById('save')
+  this.saveButton = document.getElementById('save');
   this.saveButton.addEventListener('click', this.saveGame.bind(this));
 }
 
@@ -25,7 +26,7 @@ function checkWinner() {
 }
 
 function doTurn() {
-
+  console.log("In doTurn()")
 }
 
 var player = () => {
