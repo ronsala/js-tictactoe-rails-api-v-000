@@ -1,3 +1,6 @@
+window.onload = () => {
+  attachListeners();
+}
 // var square = '';
 var squareTDs = window.document.querySelectorAll('td');
 var turn = 0;
@@ -12,14 +15,12 @@ var  winCombinations = [
   [6,4,2]
 ];
 
-function attachListeners() {
-  squareTDs.forEach(e); {
-    console.log("attachListeners e", e);
-    e.addEventListener('click', doTurn());
-  }
+var attachListeners = () => {
+  // squareTDs.forEach(e => e.addEventListener('click', doTurn()));
   this.saveButton = document.getElementById('save');
-  this.saveButton.addEventListener('click', this.saveGame.bind(this));
-}
+  // this.saveButton.addEventListener('click', this.saveGame.bind(this));
+  this.saveButton.addEventListener('click', () => console.log("button clicked"));
+};
 
 function checkWinner() {
 
