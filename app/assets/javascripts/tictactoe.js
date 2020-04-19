@@ -1,5 +1,5 @@
 // var square = '';
-// var squares = [];
+var squareTDs = window.document.querySelectorAll('td');
 var turn = 0;
 var  winCombinations = [
   [0,1,2],
@@ -13,7 +13,11 @@ var  winCombinations = [
 ];
 
 function attachListeners() {
-  
+  squareTDs.forEach(e); {
+    e.addEventListener('click', doTurn());
+  }
+  this.saveButton = document.getElementById('save')
+  this.saveButton.addEventListener('click', this.saveGame.bind(this));
 }
 
 function checkWinner() {
@@ -32,6 +36,12 @@ var player = () => {
   }
 };
 
+var previousGame = () => {
+}
+
+var saveGame = () => {
+}
+
 function setMessage(string) {
   var messageDiv = document.getElementById('message');
   messageDiv.innerHTML = string;
@@ -39,5 +49,6 @@ function setMessage(string) {
 
 function updateState(square) {
   var token = player();
+  console.log("updateState token", token)
   square.innerText = token;
 }
