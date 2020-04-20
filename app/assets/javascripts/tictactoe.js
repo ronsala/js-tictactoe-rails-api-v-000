@@ -4,28 +4,19 @@ window.onload = () => {
 var gameState = ['', '', '', '', '', '', '', '', ''];
 var turn = 0;
 var  winCombinations = [
-  [0,1,2],
-  [3,4,5],
-  [6,7,8],
-  [0,3,6],
-  [1,4,7],
-  [2,5,8],
-  [0,4,8],
-  [6,4,2]
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [6, 4, 2]
 ];
 
 var attachListeners = () => {
-  // var x = window.document.querySelector('td')
-  // x.addEventListener('click', doTurn(x));
-
   var squareTDs = Array.from(window.document.querySelectorAll('td'));
 
-
-  // for (var i = 0; i < squareTDs.length; i++){
-  //   squareTDs[i].addEventListener('click', function() {
-  //     doTurn(squareTDs[i]);
-  //   });
-  // }
   squareTDs.forEach(function(e) {
     e.addEventListener('click', function() {
       doTurn(e);
@@ -38,11 +29,24 @@ var attachListeners = () => {
 };
 
 function checkWinner() {
-
+  var won = false;
+  for (let index = 0; index < 8; index++) {
+    var winCombo = winCombinations[index];
+    var a = gameState[winCombo[0]];
+    var b = gameState[winCombo[1]];
+    var c = gameState[winCombo[2]];
+  if (a === '' || b === '' || c === '') {
+    continue;
+  }
+  if (a === b && b === c) {
+    won = true;
+    break;
+  }
+}
+  return won;
 }
 
 function doTurn(e) {
-  console.log("doTurn e", e);
   turn++;
   updateState(e);
   checkWinner();
@@ -71,4 +75,7 @@ function setMessage(string) {
 function updateState(square) {
   var token = player();
   square.innerText = token;
+  var i = Number(square.dataset.x) + 3 * Number(square.dataset.y);
+  gameState[i] = token;
+  return gameState;
 }
