@@ -15,13 +15,22 @@ var  winCombinations = [
 ];
 
 var attachListeners = () => {
-  var squareTDs = window.document.querySelectorAll('td');
+  // var x = window.document.querySelector('td')
+  // x.addEventListener('click', doTurn(x));
 
-  var i = 0;
+  var squareTDs = Array.from(window.document.querySelectorAll('td'));
 
-  for (i=0; i < squareTDs.length; i++){
-    squareTDs[i].addEventListener('click', doTurn());
-  }
+
+  // for (var i = 0; i < squareTDs.length; i++){
+  //   squareTDs[i].addEventListener('click', function() {
+  //     doTurn(squareTDs[i]);
+  //   });
+  // }
+  squareTDs.forEach(function(e) {
+    e.addEventListener('click', function() {
+      doTurn(e);
+    });
+  });
 
   this.saveButton = document.getElementById('save');
   // this.saveButton.addEventListener('click', this.saveGame.bind(this));
@@ -61,5 +70,5 @@ function setMessage(string) {
 
 function updateState(square) {
   var token = player();
-  // square.innerText = token;
+  square.innerText = token;
 }
