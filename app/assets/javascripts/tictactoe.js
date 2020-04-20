@@ -1,8 +1,8 @@
 window.onload = () => {
+  console.log("window loaded");
   attachListeners();
-}
+};
 // var square = '';
-var squareTDs = window.document.querySelectorAll('td');
 var turn = 0;
 var  winCombinations = [
   [0,1,2],
@@ -16,8 +16,21 @@ var  winCombinations = [
 ];
 
 var attachListeners = () => {
-  // squareTDs.forEach(e => e.addEventListener('click', doTurn()));
-  squareTDs.forEach(e => e.addEventListener('click', () => console.log("sq clicked")));
+  // squareTDs.forEach(e => e.addEventListener('click', () => console.log("sq clicked")));
+  var squareTDs = window.document.querySelectorAll('td');
+
+  squareTDs.forEach(e => e.addEventListener('click', doTurn()));
+
+  // var i = 0;
+
+  // for (i=0; i < squareTDs.length; i++){
+    // squareTDs[i].addEventListener('click', function () {
+      // this.style.backgroundColor="blue";
+    // });
+
+  // }
+
+  // squareTDs.forEach(e => e.addEventListener('click', () => console.log("sq clicked")));
   this.saveButton = document.getElementById('save');
   // this.saveButton.addEventListener('click', this.saveGame.bind(this));
   this.saveButton.addEventListener('click', () => console.log("button clicked"));
