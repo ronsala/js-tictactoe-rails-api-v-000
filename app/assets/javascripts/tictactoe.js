@@ -1,8 +1,7 @@
 window.onload = () => {
-  console.log("window loaded");
   attachListeners();
 };
-// var square = '';
+var gameState = ['', '', '', '', '', '', '', '', ''];
 var turn = 0;
 var  winCombinations = [
   [0,1,2],
@@ -16,21 +15,14 @@ var  winCombinations = [
 ];
 
 var attachListeners = () => {
-  // squareTDs.forEach(e => e.addEventListener('click', () => console.log("sq clicked")));
   var squareTDs = window.document.querySelectorAll('td');
 
-  squareTDs.forEach(e => e.addEventListener('click', doTurn()));
+  var i = 0;
 
-  // var i = 0;
+  for (i=0; i < squareTDs.length; i++){
+    squareTDs[i].addEventListener('click', doTurn());
+  }
 
-  // for (i=0; i < squareTDs.length; i++){
-    // squareTDs[i].addEventListener('click', function () {
-      // this.style.backgroundColor="blue";
-    // });
-
-  // }
-
-  // squareTDs.forEach(e => e.addEventListener('click', () => console.log("sq clicked")));
   this.saveButton = document.getElementById('save');
   // this.saveButton.addEventListener('click', this.saveGame.bind(this));
   this.saveButton.addEventListener('click', () => console.log("button clicked"));
@@ -40,8 +32,12 @@ function checkWinner() {
 
 }
 
-function doTurn() {
-  console.log("In doTurn()")
+function doTurn(e) {
+  console.log("doTurn e", e);
+  turn++;
+  updateState(e);
+  checkWinner();
+  setMessage();
 }
 
 var player = () => {
@@ -53,10 +49,10 @@ var player = () => {
 };
 
 var previousGame = () => {
-}
+};
 
 var saveGame = () => {
-}
+};
 
 function setMessage(string) {
   var messageDiv = document.getElementById('message');
@@ -65,6 +61,5 @@ function setMessage(string) {
 
 function updateState(square) {
   var token = player();
-  console.log("updateState token", token)
-  square.innerText = token;
+  // square.innerText = token;
 }
