@@ -30,19 +30,19 @@ var attachListeners = () => {
 
 function checkWinner() {
   var won = false;
-  for (let index = 0; index < 8; index++) {
+  for (let index = 0; index <= 8; index++) {
     var winCombo = winCombinations[index];
     var a = gameState[winCombo[0]];
     var b = gameState[winCombo[1]];
     var c = gameState[winCombo[2]];
-  if (a === '' || b === '' || c === '') {
-    continue;
+    if (a === '' || b === '' || c === '') {
+      continue;
+    }
+    if (a === b && b === c) {
+      won = true;
+      break;
+    }
   }
-  if (a === b && b === c) {
-    won = true;
-    break;
-  }
-}
   return won;
 }
 
@@ -72,10 +72,12 @@ function setMessage(string) {
   messageDiv.innerHTML = string;
 }
 
-function updateState(square) {
+var updateState = (square) => {
   var token = player();
   square.innerText = token;
   var i = Number(square.dataset.x) + 3 * Number(square.dataset.y);
   gameState[i] = token;
-  return gameState;
-}
+  console.log("gameState in updateState", gameState);
+};
+
+console.log("gameState in global", gameState);
