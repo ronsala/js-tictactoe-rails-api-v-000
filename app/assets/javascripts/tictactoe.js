@@ -25,13 +25,14 @@ var attachListeners = () => {
 
   this.saveButton = document.getElementById('save');
   // this.saveButton.addEventListener('click', this.saveGame.bind(this));
-  this.saveButton.addEventListener('click', () => console.log("button clicked"));
 };
 
 function checkWinner() {
   var won = false;
   for (let index = 0; index <= 8; index++) {
     var winCombo = winCombinations[index];
+    console.log("checkWinner() gameState", gameState);
+    console.log("checkWinner() winCombo", winCombo);
     var a = gameState[winCombo[0]];
     var b = gameState[winCombo[1]];
     var c = gameState[winCombo[2]];
@@ -77,7 +78,5 @@ var updateState = (square) => {
   square.innerText = token;
   var i = Number(square.dataset.x) + 3 * Number(square.dataset.y);
   gameState[i] = token;
-  console.log("gameState in updateState", gameState);
+  // console.log("gameState in updateState", gameState);
 };
-
-console.log("gameState in global", gameState);
