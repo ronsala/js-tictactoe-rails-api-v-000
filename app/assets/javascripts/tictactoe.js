@@ -30,36 +30,33 @@ var attachListeners = () => {
 function checkWinner() {
   var won = false;
   var TDs = Array.from(window.document.querySelectorAll('td'));
-  console.log("TDs", TDs);
-  // function state(TDs) {
-  //   console.log("checkWinner() TDs", TDs);
-  //   for (let i = 0; i < 9; i++) {
-  //     gameState[i] = TDs[i].innerText;
-  //   }
-  // }
+  console.log("gameState", gameState);
+  function state(TDs) {
+    for (let i = 0; i < 9; i++) {
+      gameState[i] = TDs[i].innerText;
+    }
+  }
 
-  // gameState = state(TDs);
+  state(TDs);
 
-  // for (let index = 0; index <= 8; index++) {
-  //   var winCombo = winCombinations[index];
-  //   // console.log("checkWinner() gameState", gameState);
-  //   // console.log("checkWinner() winCombo", winCombo);
-  //   var a = gameState[winCombo[0]];
-  //   var b = gameState[winCombo[1]];
-  //   var c = gameState[winCombo[2]];
-  //   if (a === '' || b === '' || c === '') {
-  //     continue;
-  //   }
-  //   if (a === b && b === c) {
-  //     won = true;
-  //     break;
-  //   }
-  // }
+  for (let index = 0; index < 8; index++) {
+    var winCombo = winCombinations[index];
+    var a = gameState[winCombo[0]];
+    var b = gameState[winCombo[1]];
+    var c = gameState[winCombo[2]];
+    if (a === '' || b === '' || c === '') {
+      continue;
+    }
+    if (a === b && b === c) {
+      won = true;
+      break;
+    }
+  }
+  console.log("won", won);
   return won;
 }
 
 function doTurn(e) {
-  // console.log("doTurn(e)", e);
   turn++;
   updateState(e);
   checkWinner();
