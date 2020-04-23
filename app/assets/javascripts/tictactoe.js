@@ -55,7 +55,7 @@ function checkWinner() {
   //     break;
   //   }
   // }
-  // return won;
+  return won;
 }
 
 function doTurn(e) {
