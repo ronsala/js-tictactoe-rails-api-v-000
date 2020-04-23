@@ -30,7 +30,6 @@ var attachListeners = () => {
 function checkWinner() {
   var won = false;
   var TDs = Array.from(window.document.querySelectorAll('td'));
-  console.log("gameState", gameState);
   function state(TDs) {
     for (let i = 0; i < 9; i++) {
       gameState[i] = TDs[i].innerText;
@@ -52,7 +51,6 @@ function checkWinner() {
       break;
     }
   }
-  console.log("won", won);
   return won;
 }
 
@@ -86,6 +84,4 @@ var updateState = (square) => {
   var token = player();
   square.innerText = token;
   var i = Number(square.dataset.x) + 3 * Number(square.dataset.y);
-  // gameState[i] = token;
-  // console.log("gameState in updateState", gameState);
 };
