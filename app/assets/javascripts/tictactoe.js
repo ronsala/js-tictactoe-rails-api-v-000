@@ -1,7 +1,9 @@
 window.onload = () => {
   attachListeners();
 };
+
 var gameState = ['', '', '', '', '', '', '', '', ''];
+var squareTDs = Array.from(window.document.querySelectorAll('td'));
 var turn = 0;
 var  winCombinations = [
   [0, 1, 2],
@@ -15,7 +17,6 @@ var  winCombinations = [
 ];
 
 var attachListeners = () => {
-  var squareTDs = Array.from(window.document.querySelectorAll('td'));
 
   squareTDs.forEach(function(e) {
     e.addEventListener('click', function() {
@@ -29,14 +30,13 @@ var attachListeners = () => {
 
 function checkWinner() {
   var won = false;
-  var TDs = Array.from(window.document.querySelectorAll('td'));
-  function state(TDs) {
+  function state(squareTDs) {
     for (let i = 0; i < 9; i++) {
-      gameState[i] = TDs[i].innerText;
+      gameState[i] = squareTDs[i].innerText;
     }
   }
 
-  state(TDs);
+  state(squareTDs);
 
   for (let index = 0; index < 8; index++) {
     var winCombo = winCombinations[index];
@@ -51,6 +51,9 @@ function checkWinner() {
       break;
     }
   }
+  if (won === true) {
+    setMessage(`Player ${a} Won!`);
+  }
   return won;
 }
 
@@ -58,7 +61,14 @@ function doTurn(e) {
   turn++;
   updateState(e);
   checkWinner();
-  setMessage();
+  var messageDiv = document.getElementById('message');
+  if (messageDiv.innerHTML.includes('Won') === true) {
+    squareTDs.forEach(function(e) {
+      e.innerHTML = '';
+    });
+    turn = 0;
+  }
+  // setMessage();
 }
 
 var player = () => {
@@ -83,5 +93,5 @@ function setMessage(string) {
 var updateState = (square) => {
   var token = player();
   square.innerText = token;
-  var i = Number(square.dataset.x) + 3 * Number(square.dataset.y);
+  // var i = Number(square.dataset.x) + 3 * Number(square.dataset.y);
 };
