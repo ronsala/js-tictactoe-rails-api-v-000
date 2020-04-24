@@ -58,8 +58,11 @@ function checkWinner() {
 }
 
 function doTurn(e) {
-  turn++;
+  let before = e.innerHTML;
   updateState(e);
+  if (before !== e.innerHTML) {
+    turn++;
+  }
   checkWinner();
   var messageDiv = document.getElementById('message');
   if (messageDiv.innerHTML.includes('Won') === true) {
@@ -68,7 +71,16 @@ function doTurn(e) {
     });
     turn = 0;
   }
-  // setMessage();
+  if (turn === 9) {
+    setMessage('Tie game.')
+  }
+  if (messageDiv.innerHTML.includes('Won' || 'Tie') === true) {
+    squareTDs.forEach(function(e) {
+      e.removeEventListener('click', function() {
+        doTurn(e);
+      });
+    });
+  }
 }
 
 var player = () => {
@@ -92,6 +104,7 @@ function setMessage(string) {
 
 var updateState = (square) => {
   var token = player();
-  square.innerText = token;
-  // var i = Number(square.dataset.x) + 3 * Number(square.dataset.y);
+  if (square.innerText === '') {
+    square.innerText = token;
+  }
 };
