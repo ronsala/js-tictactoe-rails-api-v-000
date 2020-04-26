@@ -72,13 +72,10 @@ function doTurn(e) {
     turn = 0;
   }
   if (turn === 9) {
-    setMessage('Tie game.')
-  }
-  if (messageDiv.innerHTML.includes('Won' || 'Tie') === true) {
+    setMessage('Tie game.');
     squareTDs.forEach(function(e) {
-      e.removeEventListener('click', function() {
-        doTurn(e);
-      });
+      e.innerHTML = '';
+      turn = 0;
     });
   }
 }
