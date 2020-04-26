@@ -66,17 +66,11 @@ function doTurn(e) {
   checkWinner();
   var messageDiv = document.getElementById('message');
   if (messageDiv.innerHTML.includes('Won') === true) {
-    squareTDs.forEach(function(e) {
-      e.innerHTML = '';
-    });
-    turn = 0;
+    reset();
   }
   if (turn === 9) {
     setMessage('Tie game.');
-    squareTDs.forEach(function(e) {
-      e.innerHTML = '';
-      turn = 0;
-    });
+    reset();
   }
 }
 
@@ -90,6 +84,13 @@ var player = () => {
 
 var previousGame = () => {
 };
+
+var reset = () => {
+  squareTDs.forEach(function(e) {
+    e.innerHTML = '';
+    turn = 0;
+  });
+}
 
 var saveGame = () => {
 };
