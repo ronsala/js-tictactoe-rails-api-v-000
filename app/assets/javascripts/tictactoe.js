@@ -17,7 +17,7 @@ var  winCombinations = [
 ];
 
 var attachListeners = () => {
-  squareTDs.forEach(function(e) {
+  this.squareTDs.forEach(function(e) {
     e.addEventListener('click', function() {
       doTurn(e);
     });
@@ -107,17 +107,17 @@ var reset = () => {
   });
 }
 
-// var saveGame = () => {
-//   fetch('/games', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   })
-//   .then((response) => {
-//     console.log(response);
-//   });
-// };
+var saveGame = () => {
+  fetch('http://localhost:52330/games', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then((response) => {
+    console.log(response);
+  });
+};
 
 function setMessage(string) {
   var messageDiv = document.getElementById('message');
