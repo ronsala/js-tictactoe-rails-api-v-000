@@ -2,7 +2,7 @@ window.onload = () => {
   attachListeners();
 };
 
-var gameState = ['', '', '', '', '', '', '', '', ''];
+var state = ['', '', '', '', '', '', '', '', ''];
 var squareTDs = Array.from(window.document.querySelectorAll('td'));
 var turn = 0;
 var  winCombinations = [
@@ -17,22 +17,30 @@ var  winCombinations = [
 ];
 
 var attachListeners = () => {
-
   squareTDs.forEach(function(e) {
     e.addEventListener('click', function() {
       doTurn(e);
     });
   });
-
+  this.clearButton = document.getElementById('previous');
+  clearButton.addEventListener('click', () => {
+    reset();
+  });
+  this.previousButton = document.getElementById('previous');
+  previousButton.addEventListener('click', () => {
+    previousGame();
+  });
   this.saveButton = document.getElementById('save');
-  // this.saveButton.addEventListener('click', this.saveGame.bind(this));
+  saveButton.addEventListener('click', () => {
+    saveGame();
+  });
 };
 
 function checkWinner() {
   var won = false;
   function state(squareTDs) {
     for (let i = 0; i < 9; i++) {
-      gameState[i] = squareTDs[i].innerText;
+      state[i] = squareTDs[i].innerText;
     }
   }
 
@@ -40,9 +48,9 @@ function checkWinner() {
 
   for (let index = 0; index < 8; index++) {
     var winCombo = winCombinations[index];
-    var a = gameState[winCombo[0]];
-    var b = gameState[winCombo[1]];
-    var c = gameState[winCombo[2]];
+    var a = state[winCombo[0]];
+    var b = state[winCombo[1]];
+    var c = state[winCombo[2]];
     if (a === '' || b === '' || c === '') {
       continue;
     }
@@ -83,6 +91,10 @@ var player = () => {
 };
 
 var previousGame = () => {
+  fetch('/games')
+    .then((response) => {
+      console.log(response);
+    });
 };
 
 var reset = () => {
