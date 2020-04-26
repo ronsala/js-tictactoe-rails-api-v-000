@@ -28,7 +28,7 @@ var attachListeners = () => {
   });
   this.previousButton = document.getElementById('previous');
   previousButton.addEventListener('click', () => {
-    previousGame();
+    previousGames();
   });
   this.saveButton = document.getElementById('save');
   saveButton.addEventListener('click', () => {
@@ -90,7 +90,7 @@ var player = () => {
   }
 };
 
-var previousGame = () => {
+var previousGames = () => {
   fetch('/games')
     .then((response) => {
       console.log(response);
