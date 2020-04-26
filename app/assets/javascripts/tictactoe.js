@@ -91,9 +91,12 @@ var player = () => {
 };
 
 var previousGames = () => {
-  fetch('/games')
+  fetch('http://localhost:3000/games')
     .then((response) => {
-      console.log(response);
+      console.log(response.json())
+    })
+    .then((results) => {
+      console.log(results)
     });
 };
 
@@ -104,8 +107,17 @@ var reset = () => {
   });
 }
 
-var saveGame = () => {
-};
+// var saveGame = () => {
+//   fetch('/games', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//   .then((response) => {
+//     console.log(response);
+//   });
+// };
 
 function setMessage(string) {
   var messageDiv = document.getElementById('message');
